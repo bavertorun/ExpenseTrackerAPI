@@ -34,7 +34,7 @@ $ git clone https://github.com/bavertorun/ExpenseTrackerAPI.git
 ```
 
 ```bash
-$ cd expense-tracker-api
+$ cd ExpenseTrackerAPI
 ```
 
 ```bash
