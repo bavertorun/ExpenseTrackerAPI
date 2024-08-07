@@ -25,7 +25,7 @@ export class AuthService {
 
     const existingUserEmail = await this.userModel.findOne({
       email: body.email,
-    });
+    }).exec();
     if (existingUserEmail)
       throw new ConflictException('Email already exists');
 
