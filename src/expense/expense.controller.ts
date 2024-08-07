@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ExpenseService } from './expense.service';
+import { ExpenseDTO } from './dto/Expense.dto';
 
 @Controller('expenses')
 export class ExpenseController {
@@ -11,5 +12,9 @@ export class ExpenseController {
     @Get(':id')
     async getOneExpense(@Param('id') expenseId: string){
         this.expenseService.getOneExpense(expenseId);
+    }
+    @Post('create')
+    async createExpense(@Body() body:ExpenseDTO){
+        this.expenseService.createExpense(body);
     }
 }
