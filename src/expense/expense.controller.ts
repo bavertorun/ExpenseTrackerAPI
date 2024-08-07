@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ExpenseService } from './expense.service';
 import { ExpenseDTO } from './dto/Expense.dto';
 
@@ -20,5 +20,9 @@ export class ExpenseController {
   @Put('update/:id')
   async updateExpense(@Param('id') id: string, @Body() body: ExpenseDTO) {
     return this.expenseService.updateExpense(id, body);
+  }
+  @Delete('delete/:id')
+  async deleteExpense(@Param('id') id: string){
+    return this.expenseService.deleteExpense(id);
   }
 }

@@ -22,9 +22,13 @@ export class ExpenseService {
     return newExpense;
   }
   async updateExpense(id: string, body: ExpenseDTO) {
-    const updateExpense = this.expenseModel.findByIdAndUpdate(id, body, {
+    const updateExpense = await this.expenseModel.findByIdAndUpdate(id, body, {
       new: true,
     });
     return updateExpense;
+  }
+  async deleteExpense(id:string){
+    const deleteExpense = await this.expenseModel.findByIdAndDelete(id);
+    return deleteExpense;
   }
 }
