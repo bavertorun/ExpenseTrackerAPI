@@ -1,4 +1,11 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { ExpenseService } from './expense.service';
 
-@Controller('expense')
-export class ExpenseController {}
+@Controller('expenses')
+export class ExpenseController {
+    constructor(private readonly expenseService: ExpenseService){}
+    @Get('')
+    async getAllExpenses(){
+        return this.expenseService.getAllExpenses();
+    }
+}
