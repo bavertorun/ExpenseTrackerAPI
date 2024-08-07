@@ -30,7 +30,7 @@ This project provides a backend API for managing personal expenses. The API allo
 ## Installation
 
 ```bash
-$ git clone https://github.com/your-username/expense-tracker-api.git
+$ git clone https://github.com/bavertorun/ExpenseTrackerAPI.git
 ```
 
 ```bash
