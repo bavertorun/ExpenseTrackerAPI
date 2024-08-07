@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { ExpenseService } from './expense.service';
 
 @Controller('expenses')
@@ -7,5 +7,9 @@ export class ExpenseController {
     @Get('')
     async getAllExpenses(){
         return this.expenseService.getAllExpenses();
+    }
+    @Get(':id')
+    async getOneExpense(@Param('id') expenseId: string){
+        this.expenseService.getOneExpense(expenseId);
     }
 }

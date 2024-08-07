@@ -10,5 +10,9 @@ export class ExpenseService {
         const expenses = await this.expenseModel.find().exec();
         return expenses;
     }
+    async getOneExpense(expenseId:string){
+        const expense = await this.expenseModel.findById(expenseId);
+        return expense;
+    }
 
 }
