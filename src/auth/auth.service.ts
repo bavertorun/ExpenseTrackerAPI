@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from './schemas/User.schema';
@@ -18,7 +18,17 @@ export class AuthService {
     return this.createToken(registerUser.username);
   }
 
+  async login(body: UserDTO) {
+    const user = await this.userModel.findOne({ username: body.username, email: body.email }).exec();
+    if (!user) throw new UnauthorizedException('Wrong Username or Email');
+
+    const isPasswordValid = await bcrypt.compare(body.password, user.password);
+    if (!isPasswordValid) throw new UnauthorizedException('Wrong Password');
+
+    return this.createToken(user.username);
+  }
+
   async createToken(username: string) {
-    return this.jwtService.sign({ username });
+    return this.jwtService.sign({ username })
   }
 }

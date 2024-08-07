@@ -9,4 +9,8 @@ export class AuthController {
     async register(@Body() body: UserDTO){
         return this.authService.register(body);
     }
+    @Post('login')
+    async login(@Body() body: UserDTO){
+        return this.authService.login(body);
+    }
 }
