@@ -19,7 +19,9 @@ export class AuthService {
   }
 
   async login(body: UserDTO) {
-    const user = await this.userModel.findOne({ username: body.username, email: body.email }).exec();
+    const user = await this.userModel
+      .findOne({ username: body.username, email: body.email })
+      .exec();
     if (!user) throw new UnauthorizedException('Wrong Username or Email');
 
     const isPasswordValid = await bcrypt.compare(body.password, user.password);
@@ -29,6 +31,6 @@ export class AuthService {
   }
 
   async createToken(username: string) {
-    return {access_token: this.jwtService.sign({ username })}
+    return { access_token: this.jwtService.sign({ username }) };
   }
 }
